@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<!--
-    Type on Strap jekyll theme v2.4.7
-    Theme free for personal and commercial use under the MIT license
-    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
--->
+<link rel="stylesheet" href="../assets/css/devicon.min.css">
 <html lang="en">
-  {% include default/head.liquid %}
+  {% include head.html %}
   <body>
-    {% include default/navbar.liquid %}
-    <div class="content">
-      {{ content }}
-    </div>
-    {% include default/footer.liquid %}
+      {% include header.html %}
+      <section id="about">
+        {% include about.html %}
+      </section>
+        {{ content }}
+      {% include footer.html %}
   </body>
 </html>
