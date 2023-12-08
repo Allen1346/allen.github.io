@@ -17,6 +17,12 @@
 <head>
   <title>数据展示</title>
   <style>
+    .table-container {
+      max-height: 800px; /* 根据每行的高度调整这个值 */
+      overflow-y: auto; /* 垂直方向上的滚动条 */
+      border: 1px solid black; /* 可选的边框样式 */
+    }
+
     table {
       width: 80%;        /* 设置表格宽度为100% */
       border-collapse: collapse; /* 边框合并，使得边框看起来更加整洁 */
@@ -38,6 +44,8 @@
 </head>
 
 <body>
+<div class="table-container">
+
 <table id="dataTable">
   <thead>
   <tr>
@@ -53,6 +61,7 @@
   <!-- 表格数据将通过JavaScript填充 -->
   </tbody>
 </table>
+</div>
 
 <script src="assets/js/data.js"></script> <!-- 假设您的JSON数据保存在data.js文件中 -->
 <script src="assets/js/script.js"></script> <!-- 您的JavaScript逻辑 -->
