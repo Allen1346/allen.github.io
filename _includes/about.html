@@ -24,7 +24,7 @@
     }
 
     table {
-      width: 80%;        /* 设置表格宽度为100% */
+      width: 100%;        /* 设置表格宽度为100% */
       border-collapse: collapse; /* 边框合并，使得边框看起来更加整洁 */
       table-layout: fixed
     }
@@ -36,6 +36,10 @@
     th, td {
       text-align: center; /* 使表头和单元格中的文本居中 */
       padding: 8px;       /* 添加一些内边距，使得文本不会紧贴边框 */
+    }
+
+    td {
+      word-wrap: break-word;
     }
 
     thead {
@@ -50,11 +54,11 @@
 <table id="dataTable">
   <thead>
   <tr>
-    <th style="width: 100px;" >TestID</th>
+    <th style="width: 50px;" >TestID</th>
     <th style="width: 150px;">Test Name</th>
-    <th style="width: 150px;">App Name</th>
-    <th style="width: 150px;">Stars</th>
-    <th style="width: 150px;">Version</th>
+    <th style="width: 160px;">App Name</th>
+    <th style="width: 70px;">Stars</th>
+    <th style="width: 70px;">Version</th>
     <th style="width: 300px;">Context</th>
   </tr>
   </thead>
