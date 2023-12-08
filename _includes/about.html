@@ -5,7 +5,71 @@
     <br>
     This work proposes a framework for the reliable reproduction of timing-dependent flaky tests in Android apps. A timing-dependent flaky test often results from event races originating from concurrent access to GUI data. Our framework employs a practical and instrumentation-free approach to reproduce timing-dependent flaky tests. In particular, we explore the space of event orders by prioritizing the orders of events— (1) before the flake failure and (2) racing on GUI data. We demonstrate the efficacy of our approach in reproducing 46 out of 50 flaky tests from 14 widely used apps, while the state-of-the-art techniques could only detect 23 at most.</p>
 </div>
+
 <div class="user-details">
   <h1 style="font-weight: bold;" >Dataset</h1>
-  <iframe height="1500px"  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQeliwaWoEVqEnb3m-rtHCQqTK2kcDZuRC2Jl-98HbPDn5SXbc3XPWIFB6elzwQGrdjU9sqnWslo4uW/pubhtml?gid=0&single=true" loading allowfullscreen width="100%" height="300"></iframe>
+  <p style="text-align: left;">To evaluate our tool, we reproduced 50 reproducible timing-dependent flaky tests in 14 real-world Android apps. The following table shows the detailed information of these flaky test cases and Apps, where "Stars" characterizes the app popularity in terms of stars on GitHub, "Version" denotes the version number of app we used in our study, "Context" describes the category of app and purpose of the test case. The test details can be found by clicking on the "<u>Test Name</u>" with a hyperlink.</p>
+    <br>
+    <br>
+<!--  <iframe height="1500px"  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQeliwaWoEVqEnb3m-rtHCQqTK2kcDZuRC2Jl-98HbPDn5SXbc3XPWIFB6elzwQGrdjU9sqnWslo4uW/pubhtml?gid=0&single=true" loading allowfullscreen width="100%" height="300"></iframe>-->
 </div>
+
+<head>
+  <title>数据展示</title>
+  <style>
+    table {
+      width: 80%;        /* 设置表格宽度为100% */
+      border-collapse: collapse; /* 边框合并，使得边框看起来更加整洁 */
+    }
+
+    table, th, td {
+      border: 1px solid black; /* 为表格、表头和单元格添加边框 */
+    }
+
+    th, td {
+      text-align: center; /* 使表头和单元格中的文本居中 */
+      padding: 8px;       /* 添加一些内边距，使得文本不会紧贴边框 */
+    }
+
+    thead {
+      background-color: #f2f2f2; /* 为表头添加背景颜色，可以根据需要调整 */
+    }
+  </style>
+</head>
+
+<body>
+<table id="dataTable">
+  <thead>
+  <tr>
+    <th style="width: 100px;" >TestID</th>
+    <th style="width: 150px;">Test Name</th>
+    <th style="width: 150px;">App Name</th>
+    <th style="width: 150px;">Stars</th>
+    <th style="width: 150px;">Version</th>
+    <th style="width: 150px;">Context</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- 表格数据将通过JavaScript填充 -->
+  </tbody>
+</table>
+
+<script src="assets/js/data.js"></script> <!-- 假设您的JSON数据保存在data.js文件中 -->
+<script src="assets/js/script.js"></script> <!-- 您的JavaScript逻辑 -->
+</body>
+
+<div class="user-details">
+  <h1 style="font-weight: bold;" >Workflow</h1>
+  <p style="text-align: left;">The workflow of FlakReaper is depicted in the following figure. FlakReaper takes the app under test and the test case as input to perform a dynamic analysis. During the analysis, FlakReaper monitors and records events during execution and GUI access operations. Besides, it captures the execution traces of a test run. Afterward, the collected runtime data and crash stacks are analyzed to identify event races that could have caused the failure. Subsequently, FlakReaper runs the test by enforcing an order among the events involved in the race to manifest the failure. To establish an order between two events, FlakReaper delays one event to allow the other to execute first. If the test run successfully reproduces the observed flaky behavior, FlakReaper provides the delay configuration as output.</p>
+  <img src="/assets/image/workflow.png" alt="我的图片" style="width: 1000px; height: auto;">
+
+    <br>
+</div>
+
+<div class="user-details">
+  <h1 style="font-weight: bold;" >Operation Demonstration</h1>
+  <p style="text-align: left;">Operation Demonstration
+    <br>
+</div>
+
+
