@@ -1,16 +1,14 @@
 <div class="user-details">
-  <h1 style="font-weight: bold;">Description</h1>
+  <h1 style="font-weight: bold;">Abstract</h1>
   <p style="text-align: left;">Flaky tests hinder the development process by exhibiting uncertain behavior in regression testing. A flaky test may pass in some runs and fail in others while running on the same code version. The non-deterministic outcome frequently misleads the developers into debugging non-existent faults in the code. To effectively debug the flaky tests, developers need to reproduce them. The industry de facto to reproduce flaky tests is to rerun them multiple times. However, rerunning a flaky test numerous times is time and resource-consuming.
     <br>
     <br>
-    This work proposes a framework for the reliable reproduction of timing-dependent flaky tests in Android apps. A timing-dependent flaky test often results from event races originating from concurrent access to GUI data. Our framework employs a practical and instrumentation-free approach to reproduce timing-dependent flaky tests. In particular, we explore the space of event orders by prioritizing the orders of events— (1) before the flake failure and (2) racing on GUI data. We demonstrate the efficacy of our approach in reproducing 46 out of 50 flaky tests from 14 widely used apps, while the state-of-the-art techniques could only detect 23 at most.</p>
+    This work presents a technique for rapidly and reliably reproducing timing-dependent GUI flaky tests, acknowledged as the most common type of flaky tests in Android apps. Our insight is that flakiness in such tests often stems from event racing on GUI data. Given stack traces of a failure, our technique employs dynamic analysis to infer event races likely leading to the failure and reproduces it by selectively delaying only relevant events involved in these races. Thus, our technique can efficiently reproduce a failure within minimal test runs. The experiments conducted on 80 timing-dependent flaky tests collected from 22 widely-used Android apps show our technique is efficient in flaky test failure reproduction. Out of the 80 flaky tests, our technique could successfully reproduce 73 within 1.71 test runs on average. Notably, it exhibited extremely high reliability by consistently reproducing the failure for 20 runs. </p>
 </div>
 
 <div class="user-details">
   <h1 style="font-weight: bold;" >Dataset</h1>
-  <p style="text-align: left;">To evaluate our tool, we reproduced 50 reproducible timing-dependent flaky tests in 14 real-world Android apps. The following table shows the detailed information of these flaky test cases and Apps, where "Stars" characterizes the app popularity in terms of stars on GitHub, "Version" denotes the version number of app we used in our study, "Context" describes the category of app and purpose of the test case. The test details can be found by clicking on the "<u>Test Name</u>" with a hyperlink.</p>
-    <br>
-    <br>
+  <p style="text-align: left;">To evaluate our tool, we reproduced 80 timing-dependent flaky tests in 22 real-world Android apps. The following table shows the detailed information of these flaky test cases and Apps, where "Stars" characterizes the app popularity in terms of stars on GitHub, "Version" denotes the version number of app we used in our study, "Context" describes the category of app and purpose of the test case. The test details can be found by clicking on the "<u>Test Name</u>" with a hyperlink.</p>
 <!--  <iframe height="1500px"  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQeliwaWoEVqEnb3m-rtHCQqTK2kcDZuRC2Jl-98HbPDn5SXbc3XPWIFB6elzwQGrdjU9sqnWslo4uW/pubhtml?gid=0&single=true" loading allowfullscreen width="100%" height="300"></iframe>-->
 </div>
 
@@ -76,14 +74,48 @@
   <h1 style="font-weight: bold;" >Workflow</h1>
   <p style="text-align: left;">The workflow of FlakReaper is depicted in the following figure. FlakReaper takes the app under test and the test case as input to perform a dynamic analysis. During the analysis, FlakReaper monitors and records events during execution and GUI access operations. Besides, it captures the execution traces of a test run. Afterward, the collected runtime data and crash stacks are analyzed to identify event races that could have caused the failure. Subsequently, FlakReaper runs the test by enforcing an order among the events involved in the race to manifest the failure. To establish an order between two events, FlakReaper delays one event to allow the other to execute first. If the test run successfully reproduces the observed flaky behavior, FlakReaper provides the delay configuration as output.</p>
   <img src="/assets/image/workflow.png" alt="我的图片" style="width: 1000px; height: auto;">
+</div>
+
+<div class="user-details">
+  <h1 style="font-weight: bold;" >Operation Demonstration</h1>
+
+  <img src="/assets/image/operation.gif" alt="operation" style="width: 1000px; height: auto;">
 
     <br>
 </div>
 
 <div class="user-details">
-  <h1 style="font-weight: bold;" >Operation Demonstration</h1>
-  <p style="text-align: left;">Operation Demonstration
+  <h1 style="font-weight: bold;" >Experiment</h1>
+  <p style="text-align: left;">Experiment
     <br>
 </div>
+
+
+<body>
+<div class="table-container">
+
+  <table id="runtimeDatas">
+    <thead>
+    <tr>
+      <th style="width: 50px;" >TestID</th>
+      <th style="width: 150px;">Test Name</th>
+      <th style="width: 80px;">Total Number of Events</th>
+      <th style="width: 70px;">Number of Event Race</th>
+      <th style="width: 120px;">Rerun Times to Reproduce Failures</th>
+      <th style="width: 120px;">Total Time to Reproduce Failures(s)</th>
+      <th style="width: 120px;">Execution Time to Trace Methods and Stacktrace(s)</th>
+      <th style="width: 120px;">Execution Time without FlakReaper(s)</th>
+      <th style="width: 80px;">Overhead</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 表格数据将通过JavaScript填充 -->
+    </tbody>
+  </table>
+</div>
+
+<script src="assets/js/runtimeDatas.js"></script> <!-- 假设您的JSON数据保存在data.js文件中 -->
+<script src="assets/js/runtimeScript.js"></script> <!-- 您的JavaScript逻辑 -->
+</body>
 
 
